@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "804997170697",
+    "project_id": "electurer-eeb84",
+    "storage_bucket": "electurer-eeb84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804997170697:android:3dc2c5f1140878afb5dad8",
+        "android_client_info": {
+          "package_name": "com.bale.estudentattendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804997170697-2ij2tcnhqq5c72ipqbgrba77bd4v7ufo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bale.estudentattendance",
+            "certificate_hash": "1887a2040543c002f5e154f682ac98db07ad6be4"
+          }
+        },
+        {
+          "client_id": "804997170697-d4t1up6ed9v1fmi5q070d1lb18e6m2el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Hh_rL4TSMvP2SK61wh8yA8LZrhxI9Xo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804997170697-d4t1up6ed9v1fmi5q070d1lb18e6m2el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

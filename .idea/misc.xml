@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.234" />
+        <entry key="app/src/main/res/drawable/ic__microsoft_excel_2019.xml" value="0.2695" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2695" />
+        <entry key="app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.2695" />
+        <entry key="app/src/main/res/drawable/ic_baseline_groups_24.xml" value="0.2695" />
+        <entry key="app/src/main/res/drawable/ic_baseline_location_city_24.xml" value="0.2695" />
+        <entry key="app/src/main/res/drawable/ic_baseline_school_24.xml" value="0.2695" />
+        <entry key="app/src/main/res/drawable/ic_kcau_logo.xml" value="0.1955" />
+        <entry key="app/src/main/res/layout/activity_account.xml" value="0.18802083333333333" />
+        <entry key="app/src/main/res/layout/activity_attendance.xml" value="0.386096256684492" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/layout/activity_session.xml" value="0.31362467866323906" />
+        <entry key="app/src/main/res/layout/activity_submitted_units.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/lecturer_unit.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/student.xml" value="0.3625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
