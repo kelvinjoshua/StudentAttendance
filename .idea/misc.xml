@@ -16,8 +16,8 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/layout/activity_session.xml" value="0.31362467866323906" />
-        <entry key="app/src/main/res/layout/activity_submitted_units.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/lecturer_unit.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/activity_submitted_units.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/lecturer_unit.xml" value="0.6096822995461422" />
         <entry key="app/src/main/res/layout/student.xml" value="0.3625" />
       </map>
     </option>

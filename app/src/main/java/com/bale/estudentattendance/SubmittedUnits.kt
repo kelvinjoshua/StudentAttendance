@@ -1,22 +1,31 @@
 package com.bale.estudentattendance
 
+import android.content.ContentValues.TAG
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.bale.estudentattendance.Adapters.AllUnitsAdapter
+import com.bale.estudentattendance.Adapters.UnitAdapter
 import com.bale.estudentattendance.Models.Unit
 import com.bale.estudentattendance.databinding.ActivitySubmittedUnitsBinding
+import com.google.firebase.firestore.Source
+import com.google.firebase.firestore.core.UserData
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.ktx.toObject
+
 
 class SubmittedUnits : AppCompatActivity() {
 
     val db = Firebase.firestore
-
+    private lateinit var adapter:UnitAdapter
     private var campus:String? = null
     private var cohort:String? = null
     private var studyMode:String? = null
-    lateinit var lecName:String
+    private var units_list = mutableListOf<Unit>()
 
 
     private lateinit var binding:ActivitySubmittedUnitsBinding
@@ -24,7 +33,8 @@ class SubmittedUnits : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySubmittedUnitsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.fetchUnitsProgress.visibility = View.VISIBLE
+        displayData()
         binding.add.setOnClickListener {
             binding.materialCardView.visibility = View.VISIBLE
         }
@@ -70,10 +80,43 @@ class SubmittedUnits : AppCompatActivity() {
                 R.id.partTime -> {
                     studyMode = "Part-time"
                 }
-
             }
         }
     }
+
+    private fun displayData() {
+        val accountPreference = getSharedPreferences(Login.PREFERENCE_FILE_NAME, MODE_PRIVATE)
+        val lecName = accountPreference.getString(Login.LEC_NAME,"").toString()
+        val query = db.collection(COLLECTION_PATH).whereEqualTo("lecturer",lecName)
+        adapter = object : UnitAdapter(query,this@SubmittedUnits){
+            override fun getItemCount(): Int {
+                val r = super.getItemCount()
+                if(r>0){
+                    binding.placeholder.visibility = View.GONE
+                    binding.fetchUnitsProgress.visibility = View.GONE
+                }
+                else {
+                    binding.placeholder.visibility = View.VISIBLE
+                    binding.fetchUnitsProgress.visibility = View.GONE
+                }
+                //Toast.makeText(this@SubmittedUnits,r.toString(),Toast.LENGTH_SHORT).show()
+                return r
+            }
+            /*override fun onDataChanged(){
+                if (itemCount == 0){
+                    binding.placeholder.visibility = View.VISIBLE
+                    binding.fetchUnitsProgress.visibility = View.GONE
+                }
+                else {
+                    binding.placeholder.visibility = View.GONE
+                    binding.fetchUnitsProgress.visibility = View.GONE
+
+                }
+            }*/
+        }
+        binding.AllUnitsrecyclerView.adapter = adapter
+    }
+
 
     private fun toggleUnitCard() {
         binding.materialCardView.visibility = View.GONE
@@ -86,15 +129,15 @@ class SubmittedUnits : AppCompatActivity() {
     private fun getUnitDetails() {
         val accountPreference = getSharedPreferences(Login.PREFERENCE_FILE_NAME, MODE_PRIVATE)
 
-        lecName = accountPreference.getString(Login.LEC_NAME,"").toString()
+        val lecName = accountPreference.getString(Login.LEC_NAME,"").toString()
         val unitName = binding.unitN.text.toString()
         val unitCode = binding.unitC.text.toString()
 
-      if ( unitCode.isEmpty() || cohort.isNullOrEmpty() || campus.isNullOrEmpty() || studyMode.isNullOrEmpty()){
+     if ( unitCode.isEmpty()||unitName.isEmpty() || cohort.isNullOrEmpty() || campus.isNullOrEmpty() || studyMode.isNullOrEmpty()){
             Toast.makeText(this,"All fields required" +" "+ lecName, Toast.LENGTH_LONG).show()
         }
         else {
-            val newUnit = Unit(lecName,unitCode,unitName,cohort!!, campus!!)
+            val newUnit = Unit(lecName,unitCode,unitName,cohort!!, campus!!, studyMode!!)
             postDetails(newUnit)
         }
     }
@@ -106,18 +149,22 @@ class SubmittedUnits : AppCompatActivity() {
             .addOnSuccessListener {
                 Toast.makeText(this,"Unit added",Toast.LENGTH_SHORT).show()
                 toggleUnitCard()
-              //  getDatasize()
+              //displayData()
+                super.onStart()
             }
-
 
     }
 
-    private fun getDatasize() {
-        val res = db.collection(COLLECTION_PATH).whereEqualTo("lecturer",lecName)
-            .get()
-        Toast.makeText(this,res.toString(),Toast.LENGTH_LONG).show()
 
 
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.startListening()
     }
     companion object {
         const val COLLECTION_PATH = "Units by lecturer"
