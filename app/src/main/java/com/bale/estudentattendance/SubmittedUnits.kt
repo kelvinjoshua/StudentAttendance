@@ -64,11 +64,10 @@ class SubmittedUnits : AppCompatActivity() {
                 R.id.bsd -> {
                     cohort = "BSD"
                 }
-                R.id.Kisumu -> {
+                R.id.bbit -> {
                     cohort = "BBIT"
-
                 }
-                R.id.Main -> {
+                R.id.bit -> {
                     cohort = "BIT"
                 }
             }
