@@ -43,6 +43,7 @@ class SubmittedUnits : AppCompatActivity() {
 
         }
         binding.submitUnitDetail.setOnClickListener {
+
             getUnitDetails()
         }
         binding.campusRadio.setOnCheckedChangeListener { radioGroup, i ->
@@ -123,6 +124,17 @@ class SubmittedUnits : AppCompatActivity() {
         binding.campusRadio.clearCheck()
         binding.cohortRadio.clearCheck()
         binding.studyModeRadio.clearCheck()
+        binding.unitC.apply {
+            text = null
+            this.clearFocus()
+        }
+        binding.unitN.apply {
+            text = null
+            this.clearFocus()
+        }
+        cohort = null
+        campus = null
+        studyMode = null
 
     }
 
@@ -137,6 +149,7 @@ class SubmittedUnits : AppCompatActivity() {
             Toast.makeText(this,"All fields required" +" "+ lecName, Toast.LENGTH_LONG).show()
         }
         else {
+            binding.uploadProgress.visibility = View.VISIBLE
             val newUnit = Unit(lecName,unitCode,unitName,cohort!!, campus!!, studyMode!!)
             postDetails(newUnit)
         }
@@ -147,6 +160,7 @@ class SubmittedUnits : AppCompatActivity() {
         db.collection(COLLECTION_PATH)
             .add(newUnit)
             .addOnSuccessListener {
+                binding.uploadProgress.visibility = View.GONE
                 Toast.makeText(this,"Unit added",Toast.LENGTH_SHORT).show()
                 toggleUnitCard()
               //displayData()
