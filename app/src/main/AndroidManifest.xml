@@ -12,6 +12,10 @@
         <activity
             android:name=".Login"
             android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
 
         </activity>
@@ -21,9 +25,6 @@
         <activity
             android:name=".SubmittedUnits"
             android:exported="true" >
-
-
-
         </activity>
         <activity
             android:name=".Attendance"
@@ -34,10 +35,7 @@
         <activity
             android:name=".Session"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".MainActivity"

@@ -89,15 +89,14 @@ class SubmittedUnits : AppCompatActivity() {
         lecName = accountPreference.getString(Login.LEC_NAME,"").toString()
         val unitName = binding.unitN.text.toString()
         val unitCode = binding.unitC.text.toString()
-        val newUnit = Unit(lecName,unitCode,unitName,cohort!!, campus!!)
-        postDetails(newUnit)
-      /*  if (lecName!!.isEmpty()|| unitCode.isEmpty() || cohort.isNullOrEmpty() || campus.isNullOrEmpty() || studyMode.isNullOrEmpty()){
-            Toast.makeText(this,"All fields required" + lecName, Toast.LENGTH_LONG).show()
+
+      if ( unitCode.isEmpty() || cohort.isNullOrEmpty() || campus.isNullOrEmpty() || studyMode.isNullOrEmpty()){
+            Toast.makeText(this,"All fields required" +" "+ lecName, Toast.LENGTH_LONG).show()
         }
         else {
             val newUnit = Unit(lecName,unitCode,unitName,cohort!!, campus!!)
             postDetails(newUnit)
-        }*/
+        }
     }
 
     private fun postDetails(newUnit: Unit) {
