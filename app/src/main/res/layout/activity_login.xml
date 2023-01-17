@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Views.Login">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/loginCard"
@@ -83,6 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textAlignment="center"
         android:textSize="18sp"
+        android:visibility="gone"
         android:textColor="#0F3EE6"
         android:id="@+id/registerUser"
         app:layout_constraintVertical_bias="0.06"
@@ -98,6 +99,19 @@
         app:layout_constraintVertical_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerUser" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="One last step"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/lecDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="310dp"

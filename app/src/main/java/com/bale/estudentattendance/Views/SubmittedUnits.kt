@@ -1,21 +1,18 @@
-package com.bale.estudentattendance
+package com.bale.estudentattendance.Views
 
-import android.content.ContentValues.TAG
-import android.content.SharedPreferences
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.bale.estudentattendance.Adapters.AllUnitsAdapter
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bale.estudentattendance.Adapters.UnitAdapter
 import com.bale.estudentattendance.Models.Unit
+import com.bale.estudentattendance.R
 import com.bale.estudentattendance.databinding.ActivitySubmittedUnitsBinding
-import com.google.firebase.firestore.Source
-import com.google.firebase.firestore.core.UserData
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.Query
 
 
 class SubmittedUnits : AppCompatActivity() {
@@ -34,9 +31,14 @@ class SubmittedUnits : AppCompatActivity() {
         binding = ActivitySubmittedUnitsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.fetchUnitsProgress.visibility = View.VISIBLE
+       // export()
         displayData()
         binding.add.setOnClickListener {
             binding.materialCardView.visibility = View.VISIBLE
+        }
+        binding.tokenPage.setOnClickListener {
+            val intent = Intent(this,Session::class.java)
+            startActivity(intent)
         }
         binding.cancel.setOnClickListener {
             toggleUnitCard()
@@ -87,7 +89,8 @@ class SubmittedUnits : AppCompatActivity() {
     private fun displayData() {
         val accountPreference = getSharedPreferences(Login.PREFERENCE_FILE_NAME, MODE_PRIVATE)
         val lecName = accountPreference.getString(Login.LEC_NAME,"").toString()
-        val query = db.collection(COLLECTION_PATH).whereEqualTo("lecturer",lecName)
+
+        val query = db.collection(COLLECTION_PATH).whereEqualTo("lecturer",lecName).orderBy("unit_name",Query.Direction.ASCENDING)
         adapter = object : UnitAdapter(query,this@SubmittedUnits){
             override fun getItemCount(): Int {
                 val r = super.getItemCount()
@@ -115,6 +118,7 @@ class SubmittedUnits : AppCompatActivity() {
             }*/
         }
         binding.AllUnitsrecyclerView.adapter = adapter
+        binding.AllUnitsrecyclerView.layoutManager = GridLayoutManager(this,2)
     }
 
 
@@ -164,6 +168,17 @@ class SubmittedUnits : AppCompatActivity() {
                 toggleUnitCard()
               //displayData()
                 super.onStart()
+            }
+
+    }
+    private fun export (){
+        val accountPreference = getSharedPreferences(Login.PREFERENCE_FILE_NAME, MODE_PRIVATE)
+
+        val lecName = accountPreference.getString(Login.LEC_NAME,"").toString()
+        val query = db.collection(COLLECTION_PATH).whereEqualTo("lecturer",lecName).orderBy("unit_name",Query.Direction.ASCENDING)
+            .addSnapshotListener { value, error ->
+                val attendance = value?.toList()
+                Toast.makeText(this,attendance.toString(),Toast.LENGTH_SHORT).show()
             }
 
     }

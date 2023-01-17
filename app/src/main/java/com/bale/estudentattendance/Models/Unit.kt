@@ -15,6 +15,5 @@ data class Unit(
         const val COHORT = "cohort"
         const val CAMPUS = "campus"
         const val STUDY_MODE = "studyMode"
-
     }
 }

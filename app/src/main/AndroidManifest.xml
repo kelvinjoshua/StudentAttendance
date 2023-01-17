@@ -9,18 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EstudentAttendance">
-        <activity
-            android:name=".Login"
-            android:exported="true" >
 
-
-
-        </activity>
         <activity
-            android:name=".Account"
-            android:exported="false" />
-        <activity
-            android:name=".SubmittedUnits"
+            android:name=".Views.Login"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,20 +19,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Attendance"
+            android:name=".Views.Account"
+            android:exported="false" />
+        <activity
+            android:name=".Views.SubmittedUnits"
             android:exported="true" >
-
 
         </activity>
         <activity
-            android:name=".Session"
+            android:name=".Views.Attendance"
             android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".Views.Session"
+            android:exported="true" >
+
 
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
         </activity>
+        <provider
+            android:authorities="com.bale.estudentattendance.fileprovider"
+            android:grantUriPermissions="true"
+            android:name="androidx.core.content.FileProvider">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Create token"
+        android:icon="@drawable/ic_baseline_generating_tokens_24"
+        android:id="@+id/token"
+        />
+    <item android:id="@+id/studentList"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="View day's attendance"/>
+</menu>

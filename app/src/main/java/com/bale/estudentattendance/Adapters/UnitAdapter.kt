@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bale.estudentattendance.Attendance
+import com.bale.estudentattendance.Views.Attendance
 import com.bale.estudentattendance.Models.Unit
 import com.bale.estudentattendance.R
-import com.bale.estudentattendance.databinding.LecturerUnitBinding
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.firestore.DocumentSnapshot
@@ -49,7 +48,7 @@ open class UnitAdapter (private val query: Query,private val c:Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getSnapshot(position))
         holder.unitCard.setOnClickListener {
-            val intent = Intent(holder.v.context,Attendance::class.java)
+            val intent = Intent(holder.v.context, Attendance::class.java)
             val item = getSnapshot(position)
             intent.putExtra("unit_Name",item.get("unit_name").toString())
             intent.putExtra("unit_code",item.get("unit_code").toString())

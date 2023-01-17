@@ -1,4 +1,4 @@
-package com.bale.estudentattendance
+package com.bale.estudentattendance.Views
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.bale.estudentattendance.R
 import com.bale.estudentattendance.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -25,6 +26,16 @@ class Login : AppCompatActivity() {
         auth = Firebase.auth
         binding.login.setOnClickListener {
             signInUser()
+        }
+        binding.salutationRAdio.setOnCheckedChangeListener { radioGroup, i ->
+            when (radioGroup.checkedRadioButtonId){
+                R.id.mr -> {
+                    salutation = "Mr."
+                }
+                R.id.mrs -> {
+                    salutation = "Mrs."
+                }
+            }
         }
 
     }
@@ -57,7 +68,7 @@ class Login : AppCompatActivity() {
 
                 }
                 else {
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Toast.makeText(baseContext, "Authentication failed",
                         Toast.LENGTH_SHORT).show()
                 }
             }
@@ -74,21 +85,14 @@ class Login : AppCompatActivity() {
     }
 
     private fun getDetails() {
-        binding.salutationRAdio.setOnCheckedChangeListener { radioGroup, i ->
-            when (radioGroup.checkedRadioButtonId){
-                R.id.mr -> {
-                    salutation = "Mr."
-                }
-                R.id.mrs -> {
-                    salutation = "Mrs."
-                }
-            }
-        }
+
         val nameRecieved = binding.name.text.toString()
-        if(nameRecieved.isNullOrEmpty() || salutation.isNullOrEmpty()){
+        Toast.makeText(this,salutation + nameRecieved,Toast.LENGTH_SHORT).show()
+
+       if(nameRecieved.isEmpty() || salutation.isNullOrEmpty()){
             Toast.makeText(this,"All fields required",Toast.LENGTH_SHORT).show()
         }
-        else {
+       else {
             val joined = salutation + nameRecieved
 
             saveToprefs(joined)
@@ -106,7 +110,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun toNext() {
-        val intent = Intent(this,SubmittedUnits::class.java)
+        val intent = Intent(this, SubmittedUnits::class.java)
         startActivity(intent)
     }
 
@@ -114,7 +118,7 @@ class Login : AppCompatActivity() {
         val accountPreference = getSharedPreferences(PREFERENCE_FILE_NAME, MODE_PRIVATE)
 
         if(accountPreference.getString(LEC_NAME,"").isNullOrEmpty()){
-            binding.registerUser.visibility = View.VISIBLE
+            binding.registerUser.visibility = View.GONE
             return false
         }
         else {

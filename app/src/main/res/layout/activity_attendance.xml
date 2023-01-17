@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Attendance">
+    tools:context=".Views.Attendance">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -13,27 +14,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        style="@style/Widget.MaterialComponents.Toolbar.Surface"
-        android:layout_width="match_parent"
-        android:backgroundTint="#EAE9F5"
-        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.MaterialToolbar
+            style="@style/Widget.MaterialComponents.Toolbar.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#EAE9F5">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unit attendance"
+                android:textSize="19sp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toTopOf="@id/AttendancerecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        >
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of listing"
+            android:layout_marginStart="10dp"
+            android:textSize="17sp"
+            />
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Attendance list"
-            android:textSize="19sp"/>
+            android:layout_marginStart="4dp"
+            android:textSize="16sp"
+            android:text="23/09/89"
+            android:id="@+id/todaydate"/>
+    </LinearLayout>
 
-    </com.google.android.material.appbar.MaterialToolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.05"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="10dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/AttendancerecyclerView"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
@@ -57,6 +89,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintVertical_bias="0.44"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -72,7 +105,7 @@
         android:padding="15dp"
         android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77"
+        app:layout_constraintVertical_bias="0.8"
         android:id="@+id/export"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
