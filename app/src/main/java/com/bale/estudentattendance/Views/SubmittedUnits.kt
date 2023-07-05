@@ -22,7 +22,6 @@ class SubmittedUnits : AppCompatActivity() {
     private var campus:String? = null
     private var cohort:String? = null
     private var studyMode:String? = null
-    private var units_list = mutableListOf<Unit>()
 
 
     private lateinit var binding:ActivitySubmittedUnitsBinding
